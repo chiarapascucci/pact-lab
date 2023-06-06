@@ -1,0 +1,118 @@
+{
+  "consumer": {
+    "name": "FrontendWebsite"
+  },
+  "interactions": [
+    {
+      "description": "get all products",
+      "providerState": "no products exist",
+      "request": {
+        "headers": {
+          "Authorization": "Bearer 2019-01-14T11:34:18.045Z"
+        },
+        "matchingRules": {
+          "$.header.$": {
+            "match": "type"
+          }
+        },
+        "method": "GET",
+        "path": "/products"
+      },
+      "response": {
+        "body": [],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "get product by ID 10 with no auth token",
+      "providerState": "product with ID 10 exists",
+      "request": {
+        "method": "GET",
+        "path": "/product/10"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "get product with ID 10",
+      "providerState": "product with ID 10 exists",
+      "request": {
+        "headers": {
+          "Authorization": "Bearer 2019-01-14T11:34:18.045Z"
+        },
+        "matchingRules": {
+          "$.header.$": {
+            "match": "type"
+          }
+        },
+        "method": "GET",
+        "path": "/product/10"
+      },
+      "response": {
+        "body": {
+          "id": "10",
+          "name": "28 Degrees",
+          "type": "CREDIT_CARD"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "get product with ID 11",
+      "providerState": "product with ID 11 does not exist",
+      "request": {
+        "headers": {
+          "Authorization": "Bearer 2019-01-14T11:34:18.045Z"
+        },
+        "matchingRules": {
+          "$.header.$": {
+            "match": "type"
+          }
+        },
+        "method": "GET",
+        "path": "/product/11"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "get all products",
+      "providerState": "products exist",
+      "request": {
+        "method": "GET",
+        "path": "/products"
+      },
+      "response": {
+        "status": 401
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "10.0.0"
+    },
+    "pactRust": {
+      "ffi": "0.2.4",
+      "models": "0.3.1"
+    },
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  },
+  "provider": {
+    "name": "ProductService"
+  }
+}
