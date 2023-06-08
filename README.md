@@ -20,7 +20,15 @@ Then you can try and start the consumer and provider to see what the application
 
 Make sure to then stop both consumer and provider to free up the ports
 
-## Run the Consumer test
-- run consumer tests (unit tests and pact tests): `npm test --prefix consumer`
-
+## STARTING POINT
+You should be able to complete the steps below successfully as the starting point of this lab. Ensure you have run `docker compose up`
+Visit `http://localhost:8000/` in your browser and login with the credentials in the `docker-compose` file to check that the Pact Broker is up and running
+1. Run the Consumer test
+run consumer tests (unit tests and pact tests): `npm test --prefix consumer`
 These should pass, and you should see a new directory `pact-lab/pacts` containing a pact file
+2. run `npm run pact:publish --prefix consumer` and navigate back to the Pact Broker. You should see your newly generated Pact published to the broker. It is not verified yet!
+3. run `npm test --prefix provider` this will run the test suites for the provider. The Pact tests will read the Pact file from the pact broker and verify the requests against the provider
+4. navigate back to the Pact Broker and check that the contract is now showing as verified. Should look something like:
+![Screenshot 2023-06-08 at 14.19.25.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fgw%2Flsm4cvbn1mn0cwf2rwz4pzj80000gp%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_hoQshP%2FScreenshot%202023-06-08%20at%2014.19.25.png)
+
+## DEPRECATE PRODUCT TYPE FIELD IN PROVIDER API
