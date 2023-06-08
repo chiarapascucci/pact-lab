@@ -37,7 +37,6 @@ describe("API Pact test", () => {
           },
           body: eachLike({
             id: "09",
-            type: "CREDIT_CARD",
             name: "Gem Visa",
           }),
         },
@@ -50,7 +49,7 @@ describe("API Pact test", () => {
         const product = await api.getAllProducts();
 
         expect(product).toStrictEqual([
-          { id: "09", name: "Gem Visa", type: "CREDIT_CARD" },
+          { id: "09", name: "Gem Visa"},
         ]);
       });
     });
@@ -131,7 +130,6 @@ describe("API Pact test", () => {
           },
           body: like({
             id: "10",
-            type: "CREDIT_CARD",
             name: "28 Degrees",
           }),
         },
@@ -145,7 +143,6 @@ describe("API Pact test", () => {
 
         expect(product).toStrictEqual({
           id: "10",
-          type: "CREDIT_CARD",
           name: "28 Degrees",
         });
       });
